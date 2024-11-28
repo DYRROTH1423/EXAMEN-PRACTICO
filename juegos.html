@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jumping star</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-color: #87CEEB; /* Fondo celeste */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden; /* Evitar que aparezcan barras de desplazamiento */
+    }
+    .estrella {
+      width: 50px;
+      height: 50px;
+      background-color: #f39c12; /* Color de la estrella */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* Centrado inicial */
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); /* Forma de estrella */
+      transition: transform 0.3s ease-in-out; /* Transición para el efecto de salto */
+    }
+    .salto {
+      transform: translate(-50%, -150%) scale(1.2); /* Subir y aumentar el tamaño durante el salto */
+    }
+  </style>
+</head>
+<body>
+  <div class="estrella" id="estrella"></div>
+
+  <script>
+    const estrella = document.getElementById('estrella'); // Obtener el div estrella
+
+    // Función para aplicar el salto a la estrella
+    function saltarEstrella() {
+      // Añadir la clase 'salto' para aplicar la animación
+      estrella.classList.add('salto');
+
+      // Remover la clase 'salto' después de la animación para que pueda repetirse
+      setTimeout(() => {
+        estrella.classList.remove('salto');
+      }, 300); // El tiempo de la animación es de 0.3 segundos
+    }
+
+    // Agregar el evento de clic en todo el documento
+    document.body.addEventListener('click', saltarEstrella);
+  </script>
+</body>
+</html>
